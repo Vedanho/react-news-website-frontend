@@ -1,0 +1,52 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.header_conteiner {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 1% 0%;
+}
+
+.header {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.categories_conteiner {
+  width: 70%;
+}
+.categories_list {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  font-size: 1.2em;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.auth_search_conteiner {
+  width: 10%;
+  height: 30px;
+  display: flex;
+   justify-content: space-between;
+}
+
+.acc {
+  font-size: 2em
+}
+
+.acc:hover {
+  font-size: 2.2em
+}
+
+.search {
+  font-size: 2em;
+}
+
+.search:hover {
+  font-size: 2.2em
+}
