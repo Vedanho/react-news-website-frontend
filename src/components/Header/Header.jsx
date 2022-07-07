@@ -8,7 +8,7 @@ import { VscAccount  } from "react-icons/vsc"
 import { BsSearch } from "react-icons/bs"
 
 const Header = () => {
-  const categories = useSelector((state) => state.categories);
+  const categories = useSelector((state) => state.category.categories);
 
   const dispatch = useDispatch();
 
@@ -25,7 +25,7 @@ const Header = () => {
         <div className="categories_conteiner">
           <ul className="categories_list">
             {categories.map((element, index) => {
-              return <li key={index}>{element.name}</li>;
+              return <li key={element._id}>{element.name}</li>;
             })}
           </ul>
         </div>
