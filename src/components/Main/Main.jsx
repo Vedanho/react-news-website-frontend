@@ -1,11 +1,16 @@
 import React from "react";
-import "./Main.css";
+import styles from "./Main.module.css";
 import Cards from "../Cards/Cards";
+import BreakingNews from "../BreakingNews/BreakingNews";
+import CarouselNews from "../Carousel/Carousel";
+
 
 
 const Main = () => {
   return (
-    <div className="Main">
+    <div className={styles.Main}>
+      <CarouselNews className={styles.CarouselNews}/>
+      <BreakingNews />
       <Cards />
     </div>
   );

@@ -1,0 +1,8 @@
+.carousel-control-prev-icon {
+    background-color: red;
+    display: none!important;
+}
+
+.carousel-control-next-icon {
+    display: none!important;
+}

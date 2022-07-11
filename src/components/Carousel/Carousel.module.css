@@ -1,0 +1,33 @@
+.carousel {
+  height: 300px !important;
+  margin: 5% 0% !important ;
+}
+
+.image {
+  width: 40% !important;
+  border-radius: 5px;
+}
+
+.item_text {
+  position: relative !important;
+  bottom: 250px;
+  left: 380px !important;
+}
+
+.text_conteiner {
+  width: 420px;
+  text-align: start;
+}
+
+.text_conteiner h6 {
+  color:#C31815;
+}
+
+.carousel-indicators {
+  top: 250px!important;
+  margin-top: 200px!important;
+}
+
+.visually-hidden{
+  width: 500px!important
+}

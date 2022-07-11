@@ -2,6 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   news: [],
+  comments: [],
+  loading: false,
+  proccess: false,
+  certainNews: null,
 };
 
 export const fetchNews = createAsyncThunk("fetch/news", async (thunkApi) => {
@@ -15,15 +19,55 @@ export const fetchNews = createAsyncThunk("fetch/news", async (thunkApi) => {
   }
 });
 
+export const getNewsById = createAsyncThunk(
+  "fetch/newsById",
+  async (id, thunkApi) => {
+    try {
+      const res = await fetch(`http://localhost:4500/new/${id}`);
+      const news = await res.json();
+
+      return news;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getComments =  createAsyncThunk(
+  "fetch/comments", async(id, thunkApi) => {
+    try {
+      const res = await fetch(`http://localhost:4500/comment/${id}`)
+      const comments = await res.populate("user").json()
+
+      return comments
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message)
+    }
+  }
+)
+
 export const newsSlice = createSlice({
   name: "news",
   initialState,
   reducer: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchNews.fulfilled, (state, action) => {
+    builder
+    .addCase(fetchNews.fulfilled, (state, action) => {
       state.news = action.payload;
-    });
-  },
+      state.loading = true;
+    })
+    .addCase(fetchNews.pending, (state, action) => {})
+    .addCase(getNewsById.fulfilled, (state, action) => {
+      state.certainNews = action.payload
+      state.proccess = true
+    })
+    .addCase(getNewsById.pending, (state, action) => {
+    
+    })
+    .addCase(getComments.fulfilled, (state, action) => {
+      state.comments = action.payload
+    })
+  }
 });
 
 export default newsSlice.reducer;

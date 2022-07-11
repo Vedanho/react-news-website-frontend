@@ -1,0 +1,21 @@
+.red_line {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 15px 0px;
+    background-color: #C31815;
+}
+
+.red_line_title {
+    padding: 12px 16px;
+    background-color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #C31815;
+}
+
+.red_line_text {
+   font-size: 20px;
+   color: white ;
+}
+

@@ -26,21 +26,23 @@
   font-size: 1.2em;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+  margin: 0px;
+  padding: 0px;
 }
 
 .auth_search_conteiner {
   width: 10%;
   height: 30px;
   display: flex;
-   justify-content: space-between;
+  justify-content: space-between;
 }
 
 .acc {
-  font-size: 2em
+  font-size: 2em;
 }
 
 .acc:hover {
-  font-size: 2.2em
+  font-size: 2.2em;
 }
 
 .search {
@@ -48,5 +50,5 @@
 }
 
 .search:hover {
-  font-size: 2.2em
+  font-size: 2.2em;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../assets/image43.png";
-import "./Header.css";
+import styles from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchCategories } from "../../features/categoriesSlice";
@@ -17,21 +17,21 @@ const Header = () => {
   }, [dispatch]);
 
   return (
-    <div className="header_conteiner">
-      <div className="header">
-        <div className="logo">
+    <div className={styles.header_conteiner}>
+      <div className={styles.header}>
+        <div className={styles.logo}>
           <img src={logo} alt="logo" />
         </div>
-        <div className="categories_conteiner">
-          <ul className="categories_list">
+        <div className={styles.categories_conteiner}>
+          <ul className={styles.categories_list}>
             {categories.map((element, index) => {
               return <li key={element._id}>{element.name}</li>;
             })}
           </ul>
         </div>
-        <div className="auth_search_conteiner">
-       <VscAccount className="acc" />
-       <BsSearch className="search"/>
+        <div className={styles.auth_search_conteiner}>
+       <VscAccount className={styles.acc}/>
+       <BsSearch className={styles.search}/>
         </div>
       </div>
     </div>
