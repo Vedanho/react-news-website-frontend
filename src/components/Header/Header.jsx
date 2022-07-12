@@ -4,8 +4,9 @@ import styles from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchCategories } from "../../features/categoriesSlice";
-import { VscAccount  } from "react-icons/vsc"
-import { BsSearch } from "react-icons/bs"
+import { VscAccount } from "react-icons/vsc";
+import { BsSearch } from "react-icons/bs";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const categories = useSelector((state) => state.category.categories);
@@ -30,8 +31,10 @@ const Header = () => {
           </ul>
         </div>
         <div className={styles.auth_search_conteiner}>
-       <VscAccount className={styles.acc}/>
-       <BsSearch className={styles.search}/>
+          <NavLink to="/auth">
+            <VscAccount className={styles.acc} />
+          </NavLink>
+          <BsSearch className={styles.search} />
         </div>
       </div>
     </div>

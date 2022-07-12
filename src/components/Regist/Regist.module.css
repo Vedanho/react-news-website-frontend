@@ -1,0 +1,20 @@
+.Auth {
+    width: 70%;
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth_conteiner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 60vh;
+    padding: 5% 10%;
+    background-color: white;
+    border-radius: 5%;
+    
+}

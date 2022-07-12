@@ -6,3 +6,14 @@
 .carousel-control-next-icon {
     display: none!important;
 }
+
+#outlined-basic{
+    background-color: white;
+}
+
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
+    border-color: red
+}
+
+
+

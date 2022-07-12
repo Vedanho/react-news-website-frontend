@@ -24,7 +24,7 @@ function CarouselNews() {
             <div className={styles.text_conteiner}>
               <h6>Trending</h6>
               <h5>{news[random_1].title}</h5>
-              <p>{news[random_1].text}</p>
+              <p>{news[random_1].text.slice(0,85)}</p>
             </div>
           </Carousel.Caption>
         </Carousel.Item>
@@ -38,7 +38,7 @@ function CarouselNews() {
             <div className={styles.text_conteiner}>
               <h6>Trending</h6>
               <h5>{news[random_2].title}</h5>
-              <p>{news[random_2].text}</p>
+              <p>{news[random_2].text.slice(0,85)}</p>
             </div>
           </Carousel.Caption>
         </Carousel.Item>
@@ -52,7 +52,7 @@ function CarouselNews() {
             <div className={styles.text_conteiner}>
               <h6>Trending</h6>
               <h5>{news[random_3].title}</h5>
-              <p>{news[random_3].text}</p>
+              <p>{news[random_3].text.slice(0,85)}</p>
             </div>
           </Carousel.Caption>
         </Carousel.Item>
