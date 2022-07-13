@@ -5,6 +5,8 @@ import styles from "./Comments.module.css";
 import Comment from "./Comment";
 import Input from "@mui/material/Input";
 import { addComment, getComments } from "../../features/commentSlice";
+import Button from "@mui/material/Button";
+
 
 const ariaLabel = { "aria-label": "description" };
 
@@ -15,7 +17,7 @@ const Comments = ({ params }) => {
   const dispatch = useDispatch();
 
   const newsId = params.id;
-  const user_id = localStorage.getItem("userId")
+  const user_id = localStorage.getItem("userId");
 
   useEffect(() => {
     dispatch(getUsers());
@@ -41,8 +43,11 @@ const Comments = ({ params }) => {
           inputProps={ariaLabel}
           onChange={handleChange}
           value={text}
+          className={styles.input}
         />
-        <button onClick={handlerAddComment}>Добавить</button>
+        <Button variant="outlined" color="error" onClick={handlerAddComment}>
+          Добавить
+        </Button>
       </div>
       {error && <div className={styles.error}>{error}</div>}
       {comments.map((comment) => {

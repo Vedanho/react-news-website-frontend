@@ -32,27 +32,23 @@ export const getNewsById = createAsyncThunk(
   }
 );
 
-
 export const newsSlice = createSlice({
   name: "news",
   initialState,
   reducer: {},
   extraReducers: (builder) => {
     builder
-    .addCase(fetchNews.fulfilled, (state, action) => {
-      state.news = action.payload;
-      state.loading = true
-    })
-    .addCase(fetchNews.pending, (state, action) => {})
-    .addCase(getNewsById.fulfilled, (state, action) => {
-      state.certainNews = action.payload
-      state.proccess = true
-
-    })
-    .addCase(getNewsById.pending, (state, action) => {
-    
-    })
-  }
+      .addCase(fetchNews.fulfilled, (state, action) => {
+        state.news = action.payload;
+        state.loading = true;
+      })
+      .addCase(fetchNews.pending, (state, action) => {})
+      .addCase(getNewsById.fulfilled, (state, action) => {
+        state.certainNews = action.payload;
+        state.proccess = true;
+      })
+      .addCase(getNewsById.pending, (state, action) => {});
+  },
 });
 
 export default newsSlice.reducer;

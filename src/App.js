@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import styles from './App.css';
 import Regist from "./components/Regist/Regist";
 import Authpage from "./pages/Authorization/Authpage";
+import Categorypage from "./pages/Categoriepage/Categorypage";
 import Homepage from "./pages/Homepage/Homepage";
 import Newspage from "./pages/Newspage/Newspage";
 
@@ -13,6 +14,7 @@ function App() {
         <Route path="/regist" element={<Regist />} />
         <Route path='/' element={<Homepage />} />
         <Route path="/new/:id" element= {<Newspage />} />
+        <Route path="/category/:id" element={<Categorypage />} />
      </Routes>
     </div>
   );

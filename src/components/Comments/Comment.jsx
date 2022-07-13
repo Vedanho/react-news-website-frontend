@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Comments.module.css";
 import { useSelector } from "react-redux";
 
 const Comment = ({ text, userId }) => {
@@ -12,10 +13,10 @@ const Comment = ({ text, userId }) => {
     return "Загрузка";
   }
   return (
-    <>
+    <div className={styles.comment}>
       <h3>{user.login}</h3>
       <p>{text}</p>
-    </>
+    </div>
   );
 };
 

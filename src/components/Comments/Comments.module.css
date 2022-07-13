@@ -14,3 +14,18 @@
     text-align: center;
     color: red;
 }
+
+.input {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width:70%;
+}
+
+.comment {
+  
+    margin-top: 3%;
+    border-radius: 10px;
+    padding: 2%;
+    border: 2px solid grey;
+}

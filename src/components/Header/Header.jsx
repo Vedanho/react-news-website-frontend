@@ -8,7 +8,7 @@ import { VscAccount } from "react-icons/vsc";
 import { BsSearch } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { GiExitDoor } from "react-icons/gi";
-import { cleanToken } from "../../features/userSlice"
+import { cleanToken } from "../../features/userSlice";
 
 const Header = () => {
   const categories = useSelector((state) => state.category.categories);
@@ -33,14 +33,25 @@ const Header = () => {
         <div className={styles.categories_conteiner}>
           <ul className={styles.categories_list}>
             {categories.map((element, index) => {
-              return <li key={element._id}>{element.name}</li>;
+              return (
+                <li key={element._id}>
+                  <NavLink to={`/category/${element._id}`}>
+                    {element.name}
+                  </NavLink>
+                </li>
+              );
             })}
           </ul>
         </div>
         <div className={styles.auth_search_conteiner}>
           {token ? (
             <GiExitDoor onClick={handleClick} className={styles.exit} />
-          ) : (<NavLink to="/auth"> <VscAccount className={styles.acc} /></NavLink>)}
+          ) : (
+            <NavLink to="/auth">
+    
+              <VscAccount className={styles.acc} />
+            </NavLink>
+          )}
           <BsSearch className={styles.search} />
         </div>
       </div>
