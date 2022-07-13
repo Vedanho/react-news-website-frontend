@@ -9,3 +9,8 @@
     margin-top: 2%;
     align-self: center;
 }
+
+.error {
+    text-align: center;
+    color: red;
+}

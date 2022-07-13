@@ -11,7 +11,6 @@ const initialState = {
 export const fetchNews = createAsyncThunk("fetch/news", async (thunkApi) => {
   try {
     const res = await fetch("http://localhost:4500/new");
-
     const news = await res.json();
     return news;
   } catch (error) {
@@ -33,18 +32,6 @@ export const getNewsById = createAsyncThunk(
   }
 );
 
-export const getComments =  createAsyncThunk(
-  "fetch/comments", async(id, thunkApi) => {
-    try {
-      const res = await fetch(`http://localhost:4500/comment/${id}`)
-      const comments = await res.populate("user").json()
-
-      return comments
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message)
-    }
-  }
-)
 
 export const newsSlice = createSlice({
   name: "news",
@@ -54,18 +41,16 @@ export const newsSlice = createSlice({
     builder
     .addCase(fetchNews.fulfilled, (state, action) => {
       state.news = action.payload;
-      state.loading = true;
+      state.loading = true
     })
     .addCase(fetchNews.pending, (state, action) => {})
     .addCase(getNewsById.fulfilled, (state, action) => {
       state.certainNews = action.payload
       state.proccess = true
+
     })
     .addCase(getNewsById.pending, (state, action) => {
     
-    })
-    .addCase(getComments.fulfilled, (state, action) => {
-      state.comments = action.payload
     })
   }
 });

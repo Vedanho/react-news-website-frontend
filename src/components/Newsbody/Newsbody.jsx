@@ -3,13 +3,15 @@ import styles from "./Newsbody.module.css";
 import { FaRegComment } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getComments, getNewsById } from "../../features/newsSlice";
+import { getNewsById } from "../../features/newsSlice";
 import { useParams } from "react-router-dom";
 import Comments from "../Comments/Comments";
+
 
 const Newsbody = () => {
   const certainNews = useSelector((state) => state.newsReducer.certainNews)
   const proccess = useSelector((state) => state.newsReducer.proccess);
+
   
   const dispatch = useDispatch();
   const params = useParams();
@@ -17,6 +19,8 @@ const Newsbody = () => {
   useEffect(() => {
     dispatch(getNewsById(params.id));
   }, [dispatch]);
+
+  console.log(proccess)
 
 
   if(proccess) {
@@ -38,7 +42,7 @@ const Newsbody = () => {
              })}
            </div>
            <div><h1><FaRegComment /> Comments </h1> 
-              <Comments certainNews={certainNews} />
+              <Comments params={params} />
            </div>
          </div>
        </div>

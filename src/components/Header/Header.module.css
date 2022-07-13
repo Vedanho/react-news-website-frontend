@@ -39,16 +39,29 @@
 
 .acc {
   font-size: 2em;
+  color: red;
 }
 
 .acc:hover {
   font-size: 2.2em;
+  cursor: pointer;
+}
+.exit {
+  font-size: 2em;
+  cursor: pointer;
+  color: red;
+}
+
+.exit:hover {
+  font-size: 2.2em;
 }
 
 .search {
-  font-size: 2em;
+  font-size: 1.7em;
+  cursor: pointer;
+  color: red;
 }
 
 .search:hover {
-  font-size: 2.2em;
+  font-size: 2em;
 }

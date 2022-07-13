@@ -64,6 +64,7 @@ export const auth = createAsyncThunk(
       }
 
       localStorage.setItem("token", data.token)
+      localStorage.setItem("userId", data.userId)
 
       return data.token
     } catch (error) {
@@ -71,6 +72,10 @@ export const auth = createAsyncThunk(
     }
   }
 );
+
+export const cleanToken = createAsyncThunk("clean/token", async (thunkAPI) => {
+  localStorage.removeItem("token")
+})
 
 export const userSlice = createSlice({
   name: "users",
@@ -82,8 +87,13 @@ export const userSlice = createSlice({
       state.users = action.payload;
     })
     .addCase(auth.fulfilled, (state, action) => {
-      state.token = action.payload.token
+      state.token = action.payload
+      state.signingIn = true
     })
+    .addCase(cleanToken.fulfilled, (state, action) => {
+      state.token = null
+    })
+  
   },
 });
 

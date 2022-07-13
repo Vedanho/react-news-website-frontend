@@ -47,4 +47,4 @@ const Cards = () => {
 
 export default Cards;
 
-// onClick={() => handleClick(element._id)}
+

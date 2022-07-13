@@ -7,11 +7,18 @@ import { fetchCategories } from "../../features/categoriesSlice";
 import { VscAccount } from "react-icons/vsc";
 import { BsSearch } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
+import { GiExitDoor } from "react-icons/gi";
+import { cleanToken } from "../../features/userSlice"
 
 const Header = () => {
   const categories = useSelector((state) => state.category.categories);
+  const token = useSelector((state) => state.userReducer.token);
 
   const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(cleanToken());
+  };
 
   useEffect(() => {
     dispatch(fetchCategories());
@@ -31,9 +38,9 @@ const Header = () => {
           </ul>
         </div>
         <div className={styles.auth_search_conteiner}>
-          <NavLink to="/auth">
-            <VscAccount className={styles.acc} />
-          </NavLink>
+          {token ? (
+            <GiExitDoor onClick={handleClick} className={styles.exit} />
+          ) : (<NavLink to="/auth"> <VscAccount className={styles.acc} /></NavLink>)}
           <BsSearch className={styles.search} />
         </div>
       </div>
