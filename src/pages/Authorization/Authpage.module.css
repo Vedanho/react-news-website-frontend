@@ -1,22 +1,36 @@
 .Auth {
-    width: 70%;
-    height: 100vh;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+  height: 100vh;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .auth_conteiner {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 60vh;
-    padding: 5% 10%;
-    background-color: white;
-    border-radius: 5%;
-    
+  height: 70vh;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 20px 120px;
+  background-color: white;
+  border-radius: 5%;
 }
 
+.auth_conteiner h1 {
+  text-align: center;
+}
 
+.loading {
+  height: 100vh;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  text-align: center;
+}

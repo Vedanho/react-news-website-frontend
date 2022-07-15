@@ -8,11 +8,13 @@ import { useParams } from "react-router-dom";
 import Comments from "../Comments/Comments";
 
 const Newsbody = () => {
-  const certainNews = useSelector((state) => state.newsReducer.certainNews);
-  const proccess = useSelector((state) => state.newsReducer.proccess);
-
   const dispatch = useDispatch();
   const params = useParams();
+  
+  const certainNews = useSelector((state) => state.newsReducer.certainNews);
+  const proccess = useSelector((state) => state.newsReducer.proccess);
+  const downoload = useSelector((state) => state.newsReducer.downoload)
+
 
   useEffect(() => {
     dispatch(getNewsById(params.id));
@@ -21,36 +23,35 @@ const Newsbody = () => {
   if (proccess) {
     const text = certainNews.text.split(".");
     return (
-      <div className={styles.background}>
-        <div className={styles.main}>
-          <div className={styles.title_conteiner}>
-            <h1>{certainNews.title}</h1>
-          </div>
-          <div className={styles.img_conteiner}>
-            <img
-              src={`http://localhost:4500/${certainNews.picture}`}
-              alt="image of news"
-            ></img>
-          </div>
-          <div className={styles.text}>
-            {text.map((element, index, array) => {
-              if (element !== "") {
-                return index % 2 === 0 ? (
-                  <p>{element + "."}</p>
-                ) : (
-                  <span>{element + "."}</span>
-                );
-              }
-            })}
-          </div>
-          <div>
-            <h1>
-              <FaRegComment /> Comments{" "}
-            </h1>
-            <Comments params={params} />
-          </div>
-        </div>
-      </div>
+      <>
+      {downoload ? <div>Идёт загрузка</div> :
+       <div className={styles.background}>
+         <div className={styles.main}>
+           <div className={styles.title_conteiner}>
+             <h1>{certainNews.title}</h1>
+           </div>
+           <div className={styles.img_conteiner}>
+             <img
+               src={`http://localhost:4500/${certainNews.picture}`}
+               alt="image of news"
+             ></img>
+           </div>
+           <div className={styles.text}>
+             {text.map((element, index, array) => {
+               if (element !== "") {
+                 return index % 2 === 0 ? (
+                   <p key={index}>{element + "."}</p>
+                 ) : (
+                   <span key={index}>{element + "."}</span>
+                 );
+               }
+             })}
+           </div>
+           <div><h1><FaRegComment />Comments</h1><Comments params={params} /></div></div>
+       </div>
+     }
+      
+      </>
     );
   }
 };

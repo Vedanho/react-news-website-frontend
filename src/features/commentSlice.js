@@ -11,7 +11,6 @@ export const getComments = createAsyncThunk(
   async (thunkAPI) => {
     try {
       const res = await fetch("http://localhost:4500/comment");
-
       const data = await res.json();
 
       return data;
@@ -38,7 +37,7 @@ export const addComment = createAsyncThunk(
           user: user_id,
         }),
       });
-
+      
       const data = await res.json();
 
       if (data.error) {
@@ -67,7 +66,7 @@ export const commentSlice = createSlice({
         state.error = null;
         state.comments_loading = false;
       })
-      .addCase(addComment.pending.apply, (state, action) => {
+      .addCase(addComment.pending, (state, action) => {
         state.comments_loading = true;
       })
       .addCase(addComment.rejected, (state, action) => {

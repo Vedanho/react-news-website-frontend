@@ -1,5 +1,4 @@
-.Auth {
-    width: 70%;
+.Regist {
     height: 100vh;
     margin: auto;
     display: flex;
@@ -8,13 +7,36 @@
     align-items: center;
 }
 
-.auth_conteiner {
+.regist_conteiner {
+    height: 70vh;
+    width:600px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 60vh;
-    padding: 5% 10%;
+    padding: 20px 120px;
     background-color: white;
     border-radius: 5%;
-    
 }
+
+.regist_conteiner h1 {
+    text-align: center;
+}
+
+.logo {
+    text-align: center;
+}
+
+.success{
+    color: green;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.loading {
+    height: 100vh;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

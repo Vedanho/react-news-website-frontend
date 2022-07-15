@@ -5,16 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchCategories } from "../../features/categoriesSlice";
 import { VscAccount } from "react-icons/vsc";
-import { BsSearch } from "react-icons/bs";
+import { AiOutlineHome } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import { GiExitDoor } from "react-icons/gi";
 import { cleanToken } from "../../features/userSlice";
+import Proccess from "../Preloader/Proccess";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
   const categories = useSelector((state) => state.category.categories);
   const token = useSelector((state) => state.userReducer.token);
-
-  const dispatch = useDispatch();
+  const proccess = useSelector((state) => state.category.proccess);
 
   const handleClick = () => {
     dispatch(cleanToken());
@@ -32,15 +34,26 @@ const Header = () => {
         </div>
         <div className={styles.categories_conteiner}>
           <ul className={styles.categories_list}>
-            {categories.map((element, index) => {
-              return (
-                <li key={element._id}>
-                  <NavLink to={`/category/${element._id}`}>
-                    {element.name}
-                  </NavLink>
-                </li>
-              );
-            })}
+            {proccess ? (
+              <div className={styles.line_loading}>
+                <Proccess />
+              </div>
+            ) : (
+              categories.map((element) => {
+                return (
+                  <li key={element._id}>
+                    <NavLink
+                      to={`/category/${element._id}`}
+                      className={({ isActive }) =>
+                        isActive ? styles.active_link : styles.disactive_link
+                      }
+                    >
+                      {element.name}
+                    </NavLink>
+                  </li>
+                );
+              })
+            )}
           </ul>
         </div>
         <div className={styles.auth_search_conteiner}>
@@ -48,11 +61,12 @@ const Header = () => {
             <GiExitDoor onClick={handleClick} className={styles.exit} />
           ) : (
             <NavLink to="/auth">
-    
               <VscAccount className={styles.acc} />
             </NavLink>
           )}
-          <BsSearch className={styles.search} />
+          <NavLink to="/">
+            <AiOutlineHome className={styles.search} />
+          </NavLink>
         </div>
       </div>
     </div>

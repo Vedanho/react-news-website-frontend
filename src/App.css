@@ -1,19 +1,44 @@
 .carousel-control-prev-icon {
-    background-color: red;
-    display: none!important;
+  display: none !important;
+  background-color: red;
 }
 
 .carousel-control-next-icon {
-    display: none!important;
+  display: none !important;
 }
 
-#outlined-basic{
-    background-color: white;
+#outlined-basic {
+  background-color: white;
 }
 
 .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
-    border-color: red
+  border-color: red;
 }
 
+.active .carousel-item img {
+  width: 200px !important;
+}
 
+.carousel-caption {
+  height: 200px !important;
+  width: 40% !important;
+  color: black !important;
+}
 
+.carousel-dark .carousel-caption {
+  position: relative !important;
+  bottom: 300px !important;
+  left: 500px !important;
+  text-align: start !important;
+}
+.carousel-caption h5 {
+  font-size: 1.8em;
+}
+
+.carousel-caption h6 {
+  color: #c31815;
+}
+
+.carousel-indicators {
+  top: 320px !important;
+}

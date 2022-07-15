@@ -6,18 +6,22 @@ import Comment from "./Comment";
 import Input from "@mui/material/Input";
 import { addComment, getComments } from "../../features/commentSlice";
 import Button from "@mui/material/Button";
-
+import Proccess from "../Preloader/Proccess";
+import PropTypes from "prop-types";
 
 const ariaLabel = { "aria-label": "description" };
 
 const Comments = ({ params }) => {
-  const comments = useSelector((state) => state.commentsReducer.comments);
-  const error = useSelector((state) => state.commentsReducer.error);
-  const [text, setText] = useState();
   const dispatch = useDispatch();
 
-  const newsId = params.id;
+  const comments = useSelector((state) => state.commentsReducer.comments);
+  const error = useSelector((state) => state.commentsReducer.error);
+  const comments_loading = useSelector((state) => state.commentsReducer.comments_loading);
+
+  const [text, setText] = useState("");
+
   const user_id = localStorage.getItem("userId");
+  const newsId = params.id;
 
   useEffect(() => {
     dispatch(getUsers());
@@ -28,7 +32,10 @@ const Comments = ({ params }) => {
   }, [dispatch]);
 
   const handlerAddComment = () => {
-    dispatch(addComment({ text, newsId, user_id }));
+    if (text !== "") {
+      dispatch(addComment({ text, newsId, user_id }));
+      setText("");
+    }
   };
 
   const handleChange = (e) => {
@@ -50,13 +57,20 @@ const Comments = ({ params }) => {
         </Button>
       </div>
       {error && <div className={styles.error}>{error}</div>}
-      {comments.map((comment) => {
-        if (newsId === comment.news) {
-          return <Comment text={comment.text} userId={comment.user} />;
-        }
-      })}
+      {comments_loading ? (
+        <div className={styles.loading}>
+          <Proccess />{" "}
+        </div>
+      ) : (comments.map((comment, index) => {if (newsId === comment.news) {
+              return (
+                <Comment text={comment.text} userId={comment.user} key={index}/>
+              );}}).reverse())}
     </div>
   );
 };
+
+Comments.propTypes = {
+  params: PropTypes.string
+}
 
 export default Comments;

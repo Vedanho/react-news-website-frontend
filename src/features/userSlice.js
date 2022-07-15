@@ -4,8 +4,10 @@ const initialState = {
   users: [],
   signingUp: false,
   signingIn: false,
+  successRegist: false,
   error: null,
-  token: localStorage.getItem("token")
+  error_auth: null,
+  token: localStorage.getItem("token"),
 };
 
 export const getUsers = createAsyncThunk("get/users", async (thunkAPI) => {
@@ -58,15 +60,15 @@ export const auth = createAsyncThunk(
       });
 
       const data = await res.json();
-      
+
       if (data.error) {
-        return thunkAPI.rejectWithValue(data.error)
+        return thunkAPI.rejectWithValue(data.error);
       }
 
-      localStorage.setItem("token", data.token)
-      localStorage.setItem("userId", data.userId)
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", data.userId);
 
-      return data.token
+      return data.token;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -74,8 +76,8 @@ export const auth = createAsyncThunk(
 );
 
 export const cleanToken = createAsyncThunk("clean/token", async (thunkAPI) => {
-  localStorage.removeItem("token")
-})
+  localStorage.removeItem("token");
+});
 
 export const userSlice = createSlice({
   name: "users",
@@ -83,17 +85,36 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-    .addCase(getUsers.fulfilled, (state, action) => {
-      state.users = action.payload;
-    })
-    .addCase(auth.fulfilled, (state, action) => {
-      state.token = action.payload
-      state.signingIn = true
-    })
-    .addCase(cleanToken.fulfilled, (state, action) => {
-      state.token = null
-    })
-  
+      .addCase(getUsers.fulfilled, (state, action) => {
+        state.users = action.payload;
+      })
+      .addCase(auth.fulfilled, (state, action) => {
+        state.token = action.payload;
+        state.signingIn = false;
+        state.error_auth = false;
+      })
+      .addCase(auth.pending, (state, action) => {
+        state.signingIn = true;
+        state.error_auth = false;
+      })
+      .addCase(auth.rejected, (state, action) => {
+        state.error_auth = action.payload;
+        state.signingIn = false;
+      })
+      .addCase(cleanToken.fulfilled, (state, action) => {
+        state.token = null;
+        state.signingIn = false;
+      })
+      .addCase(regist.fulfilled, (state, action) => {
+        state.signingUp = false;
+        state.successRegist = true;
+      })
+      .addCase(regist.pending, (state, action) => {
+        state.signingUp = true;
+      })
+      .addCase(regist.rejected, (state, action) => {
+        state.error = action.payload;
+      });
   },
 });
 

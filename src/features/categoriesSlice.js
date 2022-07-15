@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   categories: [],
-  proccessing: false,
+  proccess: false,
 };
 
 export const fetchCategories = createAsyncThunk(
@@ -27,10 +27,10 @@ export const categorySlice = createSlice({
     builder
       .addCase(fetchCategories.fulfilled, (state, action) => {
         state.categories = action.payload;
-        state.proccessing = false;
+        state.proccess = false;
       })
       .addCase(fetchCategories.pending, (state, action) => {
-        state.proccessing = true;
+        state.proccess = true;
       });
   },
 });

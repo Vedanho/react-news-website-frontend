@@ -5,16 +5,16 @@
 
 .header_conteiner {
   width: 100%;
-  background-color: #ffffff;
   padding: 1% 0%;
+  background-color: #ffffff;
 }
 
 .header {
   width: 70%;
-  margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: auto;
 }
 .categories_conteiner {
   width: 70%;
@@ -22,19 +22,20 @@
 .categories_list {
   display: flex;
   justify-content: space-between;
-  list-style-type: none;
-  font-size: 1.2em;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
   margin: 0px;
   padding: 0px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+  "Lucida Sans", Arial, sans-serif;
+  font-size: 1.2em;
+  list-style-type: none;
 }
 
 .auth_search_conteiner {
-  width: 10%;
   height: 30px;
+  width: 10%;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 }
 
 .acc {
@@ -57,11 +58,27 @@
 }
 
 .search {
-  font-size: 1.7em;
+  font-size: 2em;
   cursor: pointer;
   color: red;
 }
 
 .search:hover {
-  font-size: 2em;
+  font-size: 2.2em;
+}
+
+.active_link {
+  color: red;
+  border-bottom: 2px solid;
+  text-decoration: none;
+}
+
+.disactive_link {
+  color: #0e1e32;
+  text-decoration: none;
+}
+
+.line_loading {
+  width: 100%;
+  text-align: center;
 }

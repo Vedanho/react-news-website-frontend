@@ -1,31 +1,36 @@
 .Comments {
-    border-top: 2px grey solid;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 2px grey solid;
 }
 
 .input {
-    margin-top: 2%;
-    align-self: center;
+  align-self: center;
+  margin-top: 2%;
 }
 
 .error {
-    text-align: center;
-    color: red;
+  text-align: center;
+  color: red;
 }
 
 .input {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    width:70%;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .comment {
-  
-    margin-top: 3%;
-    border-radius: 10px;
-    padding: 2%;
-    border: 2px solid grey;
+  margin-top: 3%;
+  padding: 2%;
+  border: 2px solid grey;
+  border-radius: 10px;
+}
+
+.loading {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }

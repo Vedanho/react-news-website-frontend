@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./Footer.module.css";
 import logo from "../../assets/logo_footer.png";
-import facebook from "../../assets/facebook.png"
-import wifi from "../../assets/Wi-fi.png"
-import img from "../../assets/telepuzik.png"
-import twitter from "../../assets/twitter.png"
+import facebook from "../../assets/facebook.png";
+import wifi from "../../assets/Wi-fi.png";
+import img from "../../assets/telepuzik.png";
+import twitter from "../../assets/twitter.png";
+
 const Footer = () => {
   return (
     <div className={styles.Footer_conteiner}>
