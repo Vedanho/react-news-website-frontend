@@ -34,3 +34,8 @@
 .logo {
   text-align: center;
 }
+
+.message {
+  color: red;
+  text-align: center;
+}

@@ -1,6 +1,6 @@
 .cards_group {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-flow: row wrap;
 }
 

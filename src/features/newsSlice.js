@@ -34,6 +34,31 @@ export const getNewsById = createAsyncThunk(
   }
 );
 
+export const createNews = createAsyncThunk(
+  "create/news",
+  async ({ title, text, category, picture }, thunkAPI) => {
+    try {
+      const res = await fetch("http://localhost:4500/news", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title,
+          text,
+          category,
+          picture,
+        }),
+      });
+
+      const data = await res.json();
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+
 export const newsSlice = createSlice({
   name: "news",
   initialState,
@@ -56,7 +81,10 @@ export const newsSlice = createSlice({
       })
       .addCase(getNewsById.pending, (state, action) => {
         state.downoload = true;
-      });
+      })
+      .addCase(createNews.fulfilled, (state, action) => {
+        state.news.push(action.payload)
+      })
   },
 });
 

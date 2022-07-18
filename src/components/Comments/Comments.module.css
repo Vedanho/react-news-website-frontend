@@ -22,11 +22,21 @@
   align-items: flex-end;
 }
 
-.comment {
-  margin-top: 3%;
-  padding: 2%;
+.comment_conteiner {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2%;
   border: 2px solid grey;
   border-radius: 10px;
+}
+
+.comment_conteiner button {
+   height: 50%;
+   align-self: flex-end;
+}
+
+.comment {
+  padding: 2%;
 }
 
 .loading {

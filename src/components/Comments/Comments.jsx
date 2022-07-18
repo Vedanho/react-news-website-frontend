@@ -16,7 +16,9 @@ const Comments = ({ params }) => {
 
   const comments = useSelector((state) => state.commentsReducer.comments);
   const error = useSelector((state) => state.commentsReducer.error);
-  const comments_loading = useSelector((state) => state.commentsReducer.comments_loading);
+  const comments_loading = useSelector(
+    (state) => state.commentsReducer.commentsLoading
+  );
 
   const [text, setText] = useState("");
 
@@ -24,11 +26,8 @@ const Comments = ({ params }) => {
   const newsId = params.id;
 
   useEffect(() => {
-    dispatch(getUsers());
-  }, [dispatch]);
-
-  useEffect(() => {
     dispatch(getComments());
+    dispatch(getUsers());
   }, [dispatch]);
 
   const handlerAddComment = () => {
@@ -61,16 +60,29 @@ const Comments = ({ params }) => {
         <div className={styles.loading}>
           <Proccess />{" "}
         </div>
-      ) : (comments.map((comment, index) => {if (newsId === comment.news) {
+      ) : (
+        comments
+          .map((comment, index) => {
+            if (newsId === comment.news) {
               return (
-                <Comment text={comment.text} userId={comment.user} key={index}/>
-              );}}).reverse())}
+                <Comment
+                  text={comment.text}
+                  comment_userId={comment.user}
+                  key={index}
+                  user_id={user_id}
+                  comment_id={comment._id}
+                />
+              );
+            }
+          })
+          .reverse()
+      )}
     </div>
   );
 };
 
 Comments.propTypes = {
-  params: PropTypes.string
-}
+  params: PropTypes.string,
+};
 
 export default Comments;

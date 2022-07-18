@@ -50,9 +50,9 @@ const Regist = () => {
             <div className={styles.logo}>
               <img src={logo} alt="logo" />
             </div>
-            {message && <div style={{ color: "red" }}>{message}</div>}
+            {message && <div className={styles.message}>{message}</div>}
             {error && !successRegist && (
-              <div style={{ color: "red", textAlign: "center" }}>{error}</div>
+              <div className={styles.message}>{error}</div>
             )}
             {successRegist ? (
               <div className={styles.success}>

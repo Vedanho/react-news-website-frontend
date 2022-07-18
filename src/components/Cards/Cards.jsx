@@ -36,7 +36,7 @@ const Cards = () => {
                 <div className={styles.card_body}>
                   <h5 className={styles.title}>{element.title}</h5>
                   <p className={styles.text}>
-                    {element.text.slice(0, 125)}
+                    {element.text.slice(0, 75)}
                     <NavLink to={`/new/${element._id}`}>
                       ...Читать далее
                     </NavLink>

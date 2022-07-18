@@ -10,6 +10,7 @@ import { NavLink } from "react-router-dom";
 import { GiExitDoor } from "react-icons/gi";
 import { cleanToken } from "../../features/userSlice";
 import Proccess from "../Preloader/Proccess";
+import { ImNewspaper } from "react-icons/im";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const Header = () => {
   const categories = useSelector((state) => state.category.categories);
   const token = useSelector((state) => state.userReducer.token);
   const proccess = useSelector((state) => state.category.proccess);
+  const role = useSelector((state) => state.userReducer.role);
 
   const handleClick = () => {
     dispatch(cleanToken());
@@ -67,6 +69,7 @@ const Header = () => {
           <NavLink to="/">
             <AiOutlineHome className={styles.search} />
           </NavLink>
+          {role === "admin" && <NavLink to="admin/page"><ImNewspaper className={styles.exit} /></NavLink>}
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const initialState = {
   comments: [],
   error: null,
-  comments_loading: false,
+  commentsLoading: false,
 };
 
 export const getComments = createAsyncThunk(
@@ -37,7 +37,7 @@ export const addComment = createAsyncThunk(
           user: user_id,
         }),
       });
-      
+
       const data = await res.json();
 
       if (data.error) {
@@ -47,6 +47,25 @@ export const addComment = createAsyncThunk(
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteComment = createAsyncThunk(
+  "delete/comment",
+  async (id, thunkAPI) => {
+    const token = localStorage.getItem("token")
+    try {
+      const res = await fetch(`http://localhost:4500/comment/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      
+      return id
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message)
     }
   }
 );
@@ -64,15 +83,20 @@ export const commentSlice = createSlice({
       .addCase(addComment.fulfilled, (state, action) => {
         state.comments.push(action.payload);
         state.error = null;
-        state.comments_loading = false;
+        state.commentsLoading = false;
       })
       .addCase(addComment.pending, (state, action) => {
-        state.comments_loading = true;
+        state.commentsLoading = true;
       })
       .addCase(addComment.rejected, (state, action) => {
         state.error = action.payload;
-        state.comments_loading = false;
-      });
+        state.commentsLoading = false;
+      })
+      .addCase(deleteComment.fulfilled, (state, action) => {
+        state.comments = state.comments.filter((element) => {
+          return element._id !== action.payload
+        })
+      })
   },
 });
 

@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   users: [],
+  role: null,
   signingUp: false,
   signingIn: false,
   successRegist: false,
@@ -68,7 +69,7 @@ export const auth = createAsyncThunk(
       localStorage.setItem("token", data.token);
       localStorage.setItem("userId", data.userId);
 
-      return data.token;
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -89,9 +90,10 @@ export const userSlice = createSlice({
         state.users = action.payload;
       })
       .addCase(auth.fulfilled, (state, action) => {
-        state.token = action.payload;
+        state.token = action.payload.token;
         state.signingIn = false;
         state.error_auth = false;
+        state.role = action.payload.role;
       })
       .addCase(auth.pending, (state, action) => {
         state.signingIn = true;
@@ -114,6 +116,7 @@ export const userSlice = createSlice({
       })
       .addCase(regist.rejected, (state, action) => {
         state.error = action.payload;
+        state.signingUp = false;
       });
   },
 });

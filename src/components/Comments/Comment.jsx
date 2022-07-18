@@ -1,22 +1,36 @@
 import React from "react";
 import styles from "./Comments.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
+import { deleteComment } from "../../features/commentSlice";
 
-const Comment = ({ text, userId }) => {
+const Comment = ({ text, comment_userId, user_id, comment_id }) => {
+  const dispatch = useDispatch();
+
   const user = useSelector((state) =>
     state.userReducer.users.find((user) => {
-      return userId === user._id;
+      return comment_userId === user._id;
     })
   );
 
+  const handleClick = () => {
+    dispatch(deleteComment(comment_id));
+  };
+
   if (!user) {
-    return "Загрузка";
+    return "Проверка";
   }
   return (
-    <div className={styles.comment}>
-      <h3>{user.login}</h3>
-      <p>{text}</p>
+    <div className={styles.comment_conteiner}>
+      <div className={styles.comment}>
+        <h3>{user.login}</h3>
+        <p>{text}</p>
+      </div>
+      {comment_userId === user_id && 
+     
+          <button onClick={handleClick}>Удалить</button>
+    
+      }
     </div>
   );
 };
