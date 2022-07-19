@@ -36,22 +36,25 @@ export const getNewsById = createAsyncThunk(
 
 export const createNews = createAsyncThunk(
   "create/news",
-  async ({ title, text, category, picture }, thunkAPI) => {
+  async ({picture, title, text, category}, thunkAPI) => {
+   
     try {
+      const data = new FormData();
+     
+      data.append("image", picture);
+      data.append("title", title);
+      data.append("text", text);
+      data.append("category", category);
+       
+     console.log(picture, title, text, category)
       const res = await fetch("http://localhost:4500/news", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          title,
-          text,
-          category,
-          picture,
-        }),
+        body:  data
       });
 
-      const data = await res.json();
+      const result = await res.json();
 
-      return data;
+      return result;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
