@@ -1,0 +1,22 @@
+.Sidebar {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  background-color: #0e1e32;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  padding: 2% 1%;
+  line-height: 1.8em;
+  color: white;
+  text-align: center;
+}
+
+.list_item {
+  color: white;
+  text-decoration: none;
+}
+
+.Sidebar img {
+  text-align: center;
+  width: 55px;
+  align-self: center;
+}

@@ -1,22 +1,65 @@
 textarea {
-    resize: revert !important;
-    
+  resize: revert !important;
 }
 
 .body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  height: 100%;
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.picture img {
+  width: 250px;
+  height: 150px;
+}
+
+.picture_conteiner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  order: 1;
+}
+
+.picture {
+  width: 250px;
+  height: 250px;
+  border: 2px #0e1e32 dashed;
+  text-align: center;
+}
+
+.text_title_conteiner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.text_conteiner h2 {
+  color: #0e1e32
 }
 
 .text_conteiner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  text-align: center;
+}
+.text {
+  width: 25em;
+  height: 25vh;
+  border: 2px #0e1e32 solid;
 }
 
-.text {
-    width: 25em
+.title_conteiner {
+  text-align: center;
+}
+
+.title {
+  width: 25em;
+  border: 2px #0e1e32 solid;
+}
+
+.button_conteiner {
+  align-self: flex-end;
 }

@@ -6,6 +6,7 @@ import { createNews } from "../../features/newsSlice";
 import { fetchCategories } from "../../features/categoriesSlice";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
+import { GoCloudUpload } from "react-icons/go";
 
 const AdminPageBody = () => {
   const categories = useSelector((state) => state.category.categories);
@@ -16,6 +17,17 @@ const AdminPageBody = () => {
   const [text, setText] = useState("");
   const [category, setCategory] = useState("");
   const [picture, setPicture] = useState(null);
+  const [preview, setPreview] = useState(null);
+
+  useEffect(() => {
+    if (picture) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(picture);
+    }
+  });
 
   const titleChange = (e) => {
     setTitle(e.target.value);
@@ -29,75 +41,74 @@ const AdminPageBody = () => {
     setCategory(e.target.value);
   };
 
-  const pictureChange = (e) => {
-    const file = e.target.files[0];
-    setPicture(file);
-    // if (file && file.type.substring(0, 5) === "image") {
-    //   setPicture(file)
-    // } else {
-    //   setPicture(null)
-    // }
-  };
-
   const handleClick = () => {
-    const data = new FormData();
-
-    data.append("image", picture);
-    data.append("title", title);
-    data.append("text", text);
-    data.append("category", category);
-
-    dispatch(createNews({picture, title, text, category}));
+    dispatch(createNews({ picture, title, text, category }));
   };
 
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  console.log(picture);
-
   return (
     <>
       <div className={styles.body}>
-        <div className={styles.text_conteiner}>
-          <h1>Заголовок новости</h1>
-          <textarea className={styles.text} onChange={titleChange}></textarea>
-        </div>
-        <div className={styles.text_conteiner}>
-          <h1>Текст новости</h1>
-          <textarea className={styles.text} onChange={textChange}></textarea>
-        </div>
-        <div className={styles.text_conteiner} onChange={categoryChange}>
-          <h1>Категория новости</h1>
-          <FloatingLabel controlId="floatingSelect" label="Works with selects">
-            <Form.Select aria-label="Floating label select example">
-              <option>Open this select menu</option>
-              {categories.map((element, index) => {
-                return (
-                  <option
-                    value={element._id}
-                    key={element._id}
-                    onChange={categoryChange}
-                  >
-                    {element.name}
-                  </option>
-                );
-              })}
-            </Form.Select>
-          </FloatingLabel>
-        </div>
-        <div>
-          <h1>Фотография новости</h1>
+        <div className={styles.picture_conteiner}>
+          <h2>Фотография новости</h2>
+          {picture ? (
+            <div className={styles.picture}>
+              <img src={preview}></img>
+            </div>
+          ) : (
+            <div className={styles.picture}>
+              <GoCloudUpload />
+            </div>
+          )}
           <input
             type="file"
             accept="image/*"
             onChange={(e) => setPicture(e.target.files[0])}
           />
         </div>
-        <div> <img src = {picture }></img></div>
+        <div className={styles.text_title_conteiner}>
+          <div className={styles.title_conteiner}>
+            <h2>Заголовок новости</h2>
+            <textarea
+              className={styles.title}
+              onChange={titleChange}
+            ></textarea>
+          </div>
+          <div className={styles.text_conteiner}>
+            <h2>Текст новости</h2>
+            <textarea className={styles.text} onChange={textChange}></textarea>
+          </div>
+          <div className={styles.text_conteiner} onChange={categoryChange}>
+            <h2>Категория новости</h2>
+            <FloatingLabel
+              controlId="floatingSelect"
+              label="Выберите категорию"
+            >
+              <Form.Select aria-label="Floating label select example">
+                <option> </option>
+                {categories.map((element, index) => {
+                  return (
+                    <option
+                      value={element._id}
+                      key={element._id}
+                      onChange={categoryChange}
+                    >
+                      {element.name}
+                    </option>
+                  );
+                })}
+              </Form.Select>
+            </FloatingLabel>
+          </div>
+        </div>
+        <div className={styles.button_conteiner}>
         <Button variant="outlined" color="error" onClick={handleClick}>
           Добавить новость
         </Button>
+      </div>
       </div>
     </>
   );

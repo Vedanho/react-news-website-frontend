@@ -1,4 +1,4 @@
-.Adminpage {
-  width: 80%;
-  margin: auto;
+.Sidebar_Body {
+  display: flex;
+  height: 100vh
 }
