@@ -8,7 +8,7 @@ import { VscAccount } from "react-icons/vsc";
 import { AiOutlineHome } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import { GiExitDoor } from "react-icons/gi";
-import { cleanToken } from "../../features/userSlice";
+import { cleanToken, getUsers } from "../../features/userSlice";
 import Proccess from "../Preloader/Proccess";
 import { ImNewspaper } from "react-icons/im";
 
@@ -19,6 +19,7 @@ const Header = () => {
   const token = useSelector((state) => state.userReducer.token);
   const proccess = useSelector((state) => state.category.proccess);
   const role = useSelector((state) => state.userReducer.role);
+  
 
   const handleClick = () => {
     dispatch(cleanToken());
@@ -26,6 +27,7 @@ const Header = () => {
 
   useEffect(() => {
     dispatch(fetchCategories());
+    dispatch(getUsers())
   }, [dispatch]);
 
   return (
@@ -69,7 +71,11 @@ const Header = () => {
           <NavLink to="/">
             <AiOutlineHome className={styles.search} />
           </NavLink>
-          {role === "admin" && <NavLink to="admin/page"><ImNewspaper className={styles.exit} /></NavLink>}
+          {role === "admin" && (
+            <NavLink to="admin/page">
+              <ImNewspaper className={styles.exit} />
+            </NavLink>
+          )}
         </div>
       </div>
     </div>

@@ -18,6 +18,7 @@ const AdminPageBody = () => {
   const [category, setCategory] = useState("");
   const [picture, setPicture] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (picture) {
@@ -42,7 +43,17 @@ const AdminPageBody = () => {
   };
 
   const handleClick = () => {
-    dispatch(createNews({ picture, title, text, category }));
+    if (picture !== "" && title !== "" && text !== "" && category !== "") {
+      dispatch(createNews({ picture, title, text, category }));
+      setTitle("");
+      setCategory("");
+      setText("");
+      setError("");
+      setPicture(null);
+      setPreview(null);
+    } else {
+      setError("Все поля должны быть заполнены");
+    }
   };
 
   useEffect(() => {
@@ -75,19 +86,29 @@ const AdminPageBody = () => {
             <textarea
               className={styles.title}
               onChange={titleChange}
+              value={title}
             ></textarea>
           </div>
           <div className={styles.text_conteiner}>
             <h2>Текст новости</h2>
-            <textarea className={styles.text} onChange={textChange}></textarea>
+            <textarea
+              className={styles.text}
+              onChange={textChange}
+              value={text}
+            ></textarea>
           </div>
           <div className={styles.text_conteiner} onChange={categoryChange}>
             <h2>Категория новости</h2>
             <FloatingLabel
               controlId="floatingSelect"
               label="Выберите категорию"
+              value={category}
             >
-              <Form.Select aria-label="Floating label select example">
+              <Form.Select
+                aria-label="Floating label select example"
+                classaName={styles.select}
+                value={category}
+              >
                 <option> </option>
                 {categories.map((element, index) => {
                   return (
@@ -105,10 +126,11 @@ const AdminPageBody = () => {
           </div>
         </div>
         <div className={styles.button_conteiner}>
-        <Button variant="outlined" color="error" onClick={handleClick}>
-          Добавить новость
-        </Button>
-      </div>
+          <Button variant="outlined" color="error" onClick={handleClick}>
+            Добавить новость
+          </Button>
+          {error && <p className={styles.error}>{error}</p>}
+        </div>
       </div>
     </>
   );

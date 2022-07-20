@@ -46,7 +46,6 @@ export const createNews = createAsyncThunk(
       data.append("text", text);
       data.append("category", category);
        
-     console.log(picture, title, text, category)
       const res = await fetch("http://localhost:4500/news", {
         method: "POST",
         body:  data

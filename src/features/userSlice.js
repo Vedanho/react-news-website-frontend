@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   users: [],
-  role: null,
+  role: localStorage.getItem("role"),
   signingUp: false,
   signingIn: false,
   successRegist: false,
@@ -68,6 +68,7 @@ export const auth = createAsyncThunk(
 
       localStorage.setItem("token", data.token);
       localStorage.setItem("userId", data.userId);
+      localStorage.setItem("role", data.role);
 
       return data;
     } catch (error) {
@@ -78,6 +79,7 @@ export const auth = createAsyncThunk(
 
 export const cleanToken = createAsyncThunk("clean/token", async (thunkAPI) => {
   localStorage.removeItem("token");
+  localStorage.removeItem("role")
 });
 
 export const userSlice = createSlice({
@@ -105,6 +107,7 @@ export const userSlice = createSlice({
       })
       .addCase(cleanToken.fulfilled, (state, action) => {
         state.token = null;
+        state.role = null;
         state.signingIn = false;
       })
       .addCase(regist.fulfilled, (state, action) => {
